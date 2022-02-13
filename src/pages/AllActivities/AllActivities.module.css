@@ -22,7 +22,7 @@
   max-width: 200px;
   margin: auto;
 }
-.textContainer > ion-col h3{
+.textContainer > ion-col h3 {
   color: #000;
   font-weight: 700;
 }
@@ -35,4 +35,12 @@
 
 .textContainer > ion-col ion-button {
   color: #fff;
+}
+
+@media screen and (min-width: 400px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }

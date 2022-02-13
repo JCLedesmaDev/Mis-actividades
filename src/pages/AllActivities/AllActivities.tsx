@@ -33,7 +33,7 @@ const AllActivities: React.FC = () => {
       <Header title="Todas las actividades" />
 
       <IonContent>
-        <IonGrid>
+        <IonGrid className={AllActivitiesCSS.container}>
           {activities?.length > 0 ? (
             activities.map((activity: any, index: number) => (
               <Activity key={index} activity={activity} />
