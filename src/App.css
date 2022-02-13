@@ -1,0 +1,30 @@
+ion-content {
+  --background: #ddd;
+}
+ion-card,
+ion-card-content,
+ion-item {
+  --background: #fff;
+  color: #000;
+}
+
+ion-card-title {
+  color: #000;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+ion-card-subtitle {
+  color: #000;
+  font-weight: 700;
+}
+
+.cardContent {
+  --background: #ddd;
+  background: #ddd;
+}
+
+.colorHeader {
+  background: var(--ion-color-primary);
+  --background: var(--ion-color-primary);
+  color: #fff;
+}

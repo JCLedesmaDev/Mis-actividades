@@ -1,0 +1,38 @@
+.textContainer {
+  background-color: #eee;
+  box-shadow: #999 3px 3px 15px;
+  border-radius: 2rem;
+  max-width: 70%;
+  margin: auto;
+  margin-top: 3rem;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.textContainer > ion-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.textContainer > ion-col img {
+  width: 30%;
+  max-width: 200px;
+  margin: auto;
+}
+.textContainer > ion-col h3{
+  color: #000;
+  font-weight: 700;
+}
+.textContainer > ion-col p {
+  font-size: 1.05rem;
+  margin: 0;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.textContainer > ion-col ion-button {
+  color: #fff;
+}
