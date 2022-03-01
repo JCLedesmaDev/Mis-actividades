@@ -99,7 +99,7 @@ const AddActivity: React.FC = () => {
         imageUrl: selectImage[activityType],
       });
 
-        setError(false)
+      setError(false)
       setToastMsg("La actividad se ha agregado correctamente");
 
       setTimeout(() => {
@@ -107,10 +107,9 @@ const AddActivity: React.FC = () => {
         resetForm();
       }, 2000);
     } catch (error: any) {
+
       setToastMsg(error);
     }
-
-    // TODO:  HACER APK; ACTUALIZAR PAG
   };
 
   return (
