@@ -9,17 +9,7 @@ import { getStorage, updateStorage } from "../Utils/updateStorage";
 import { IActivity } from "../Interfaces/IActivity";
 
 export const INITIAL_STATE: IActivitiesState = {
-  activities: [
-    // {
-    //   title: "Tomar mi siesta",
-    //   descripcion: "Esto es un ejemplo de como funciona.",
-    //   hora: "14:00",
-    //   activityType: "descansar",
-    //   isCompleted: false,
-    //   _id: (Math.random() * 100).toString(),
-    //   imageUrl: nature,
-    // },
-  ],
+  activities: [],
   activitySelected: undefined,
   stateModalActivity: false,
 };

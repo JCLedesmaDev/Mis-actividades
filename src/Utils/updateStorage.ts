@@ -1,6 +1,8 @@
 import { IActivity } from "../Interfaces/IActivity";
 
 export const updateStorage = (activities: IActivity[]) => {
+  
+  //Cambiar nombre por el que sea en la circunstancia.
   localStorage.setItem("activities", JSON.stringify(activities));
 };
 

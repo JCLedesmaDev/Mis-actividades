@@ -14,6 +14,8 @@ export const ActivitiesProvider: React.FC<Props> = (props) => {
 
   const getActivies = () => {
 
+    // PETICION AL BACK con payload, etc
+
     dispatch({
       type: "getActivities",
     });

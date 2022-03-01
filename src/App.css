@@ -28,3 +28,11 @@ ion-card-subtitle {
   --background: var(--ion-color-primary);
   color: #fff;
 }
+
+
+.msgError{
+  color: red;
+  text-align: center;
+  font-size: 0.875rem;
+  /* margin-top: -1rem; */
+}

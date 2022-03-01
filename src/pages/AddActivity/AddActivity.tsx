@@ -13,6 +13,7 @@ import {
   IonDatetime,
   IonButton,
   IonToast,
+  IonText,
 } from "@ionic/react";
 
 import { useHistory } from "react-router-dom";
@@ -25,6 +26,7 @@ import { ActivityType } from "../../Interfaces/IActivity";
 import portfolio3 from "../../images/portfolio-3.jpg";
 import portfolio4 from "../../images/portfolio-4.jpg";
 import nature from "../../images/nature-3191091_1920.jpg";
+import { MessageError } from "../../components/MessageError/MessageError";
 
 interface IFormData {
   activityType: string;
@@ -59,6 +61,7 @@ const AddActivity: React.FC = () => {
   const { addActivity } = useActivities();
   const typeActivity = useRef<HTMLIonSegmentElement>(null);
   const [toastMsg, setToastMsg] = useState<string>("");
+  const [error, setError] = useState(false);
 
   const { formulario, handleChange, resetForm } = useFormCustom<IFormData>({
     activityType: "",
@@ -66,20 +69,26 @@ const AddActivity: React.FC = () => {
     descripcion: "",
     hora: "",
   });
+  const { descripcion, hora, title } = formulario as IFormData;
+  const activityType = typeActivity.current?.value as ActivityType;
+
+  console.log("NEGADO ", !activityType);
 
   /// METODOS
 
   const createActivity = () => {
-    const { descripcion, hora, title } = formulario as IFormData;
-    const activityType = typeActivity.current?.value as ActivityType;
-
     const validate =
       !!activityType?.length &&
       !!title?.length &&
       !!descripcion?.length &&
       !!hora?.length;
 
-    if (validate) {
+    try {
+      if (validate === false) {
+        setError(true);
+        throw new Error("Uups... Debe completar todos los campos");
+      }
+
       addActivity({
         title,
         descripcion,
@@ -90,13 +99,18 @@ const AddActivity: React.FC = () => {
         imageUrl: selectImage[activityType],
       });
 
+        setError(false)
       setToastMsg("La actividad se ha agregado correctamente");
 
       setTimeout(() => {
         history.push("/all-activities");
         resetForm();
       }, 2000);
+    } catch (error: any) {
+      setToastMsg(error);
     }
+
+    // TODO:  HACER APK; ACTUALIZAR PAG
   };
 
   return (
@@ -117,7 +131,7 @@ const AddActivity: React.FC = () => {
           <IonRow>
             <IonCol className="ion-text-center">
               <IonSegment ref={typeActivity}>
-                <IonSegmentButton value="trabajar" >
+                <IonSegmentButton value="trabajar">
                   <IonLabel color="primary">Trabajo</IonLabel>
                 </IonSegmentButton>
                 <IonSegmentButton value="descansar">
@@ -128,6 +142,10 @@ const AddActivity: React.FC = () => {
                 </IonSegmentButton>
               </IonSegment>
             </IonCol>
+
+            {!activityType && error && (
+              <MessageError message="Debe elegir alguna categoria." />
+            )}
           </IonRow>
 
           {inputActivities.map(({ name, placeholder, type }, indexI) => (
@@ -144,6 +162,10 @@ const AddActivity: React.FC = () => {
                   />
                 </IonItem>
               </IonCol>
+
+              {!formulario[name] && error && (
+                <MessageError message={`Su actividad debe tener un ${name}.`} />
+              )}
             </IonRow>
           ))}
 
@@ -160,6 +182,12 @@ const AddActivity: React.FC = () => {
                 />
               </IonItem>
             </IonCol>
+
+            {!formulario["hora"] && error && (
+              <MessageError
+                message={`Su actividad debe tener una hora de inicio.`}
+              />
+            )}
           </IonRow>
 
           <IonRow>
